@@ -180,9 +180,15 @@
       </h:commandLink>
 	  </f:facet>
 
-	 <h:panelGroup>
-	  <h:outputText value="#{log.errorMsg}" rendered="#{!log.isNoErrors}"/>
-	    <h:outputText value="#{log.errorMsg}" styleClass="prePopulateText" rendered="#{log.isNoErrors}"/>
+      <h:panelGroup>
+	    <h:outputText value="#{log.errorMsg}" rendered="#{!log.isNoErrors && log.errorMsg ne 'error_auto_submit' && log.errorMsg ne 'no_error_auto_submit'}"/>
+	    <h:outputText value="#{log.errorMsg}" styleClass="prePopulateText" rendered="#{log.isNoErrors && log.errorMsg ne 'error_auto_submit' && log.errorMsg ne 'no_error_auto_submit'}"/>
+
+	    <h:outputText value="#{eventLogMessages.no_error_auto_submit}" rendered="#{!log.isNoErrors && log.errorMsg eq 'no_error_auto_submit'}"/>
+	    <h:outputText value="#{eventLogMessages.no_error_auto_submit}" styleClass="prePopulateText" rendered="#{log.isNoErrors && log.errorMsg eq 'no_error_auto_submit'}"/>
+
+	    <h:outputText value="#{eventLogMessages.error_auto_submit}" rendered="#{!log.isNoErrors && log.errorMsg eq 'error_auto_submit'}"/>
+	    <h:outputText value="#{eventLogMessages.error_auto_submit}" styleClass="prePopulateText" rendered="#{log.isNoErrors && log.errorMsg eq 'error_auto_submit'}"/>
      </h:panelGroup>
 	</h:column>
 
