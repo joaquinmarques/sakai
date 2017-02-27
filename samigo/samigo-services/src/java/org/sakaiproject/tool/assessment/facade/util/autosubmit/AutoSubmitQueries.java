@@ -80,9 +80,8 @@ public class AutoSubmitQueries extends HibernateDaoSupport implements AutoSubmit
 			{
 				List eventLogDataList = eventService.getEventLogData(gradingId);
 				if (!eventLogDataList.isEmpty()) {
-					EventLogData eventLogData= (EventLogData) eventLogDataList.get(0);
-					//will do the i18n issue later.
-					eventLogData.setErrorMsg("No Errors (Auto submit)");
+					EventLogData eventLogData= (EventLogData) eventLogDataList.get(0);					
+					eventLogData.setErrorMsg("no_error_auto_submit");
 					Date endDate = new Date();
 					eventLogData.setEndDate(endDate);
 					if(eventLogData.getStartDate() != null) {
@@ -90,8 +89,8 @@ public class AutoSubmitQueries extends HibernateDaoSupport implements AutoSubmit
 						int eclipseTime = (int)Math.ceil(((endDate.getTime() - eventLogData.getStartDate().getTime())/minute));
 						eventLogData.setEclipseTime(eclipseTime); 
 					} else {
-						eventLogData.setEclipseTime(null); 
-						eventLogData.setErrorMsg("Error during auto submit");
+						eventLogData.setEclipseTime(null); 						
+						eventLogData.setErrorMsg("error_auto_submit");
 					}
 					eventLogFacade.setData(eventLogData);
 					eventService.saveOrUpdateEventLog(eventLogFacade);
