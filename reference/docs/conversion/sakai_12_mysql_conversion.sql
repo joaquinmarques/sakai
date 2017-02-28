@@ -345,3 +345,10 @@ FROM GB_GRADEBOOK_T gb
 JOIN GB_GRADING_SCALE_T gs
   ON gs.scale_uid = 'GradePointsMapping';
 -- END 3432
+
+--
+-- SAM-3145 auto submit event is not i18n
+--
+
+UPDATE SAM_EVENTLOG_T set ERRORMSG = "error_auto_submit" where ERRORMSG = "Error during auto submit";
+UPDATE SAM_EVENTLOG_T set ERRORMSG = "no_error_auto_submit" where ERRORMSG = "No Errors (Auto submit)";
