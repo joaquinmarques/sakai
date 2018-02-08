@@ -923,8 +923,5 @@ public class Validator
 		if ( sb.length() < 1 ) return null;
 		return sb.substring(0, sb.length()-1);
 	}
-	
-	public static String convertNewLineToHtml(String value)	{
-		return value.replaceAll("(\r\n|\r|\n|\n\r)", "<br />");
-	}
+
 }
